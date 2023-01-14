@@ -10,13 +10,18 @@ img2 = cv2.imread(imgpath2, 1)
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
 
-titles = ['Color image', 'GrayScale image', 'Color-Negative', 'GrayScale-Negative']
-images = [color_image, gray_image, color_negative, gray_negative]
-cmaps = [None, 'gray', None, 'gray']
+img1_not = cv2.bitwise_not(img1)
+img_and = cv2.bitwise_and(img1, img2)
+img_or = cv2.bitwise_or(img1, img2)
+img_xor = cv2.bitwise_xor(img1, img2)
+
+titles = ['img1', 'img2', 'bitwise not img1', 'bitwise and', 'bitwise or', 'bitwise xor']
+images = [img1, img2, img1_not, img_and, img_or, img_xor]
+
 
 for i in range(len(images)):
-    plt.subplot(2, 2, i+1)
-    plt.imshow(images[i], cmap=cmaps[i])
+    plt.subplot(2, 3, i+1)
+    plt.imshow(images[i])
     plt.title(titles[i])
     plt.xticks([])
     plt.yticks([])
